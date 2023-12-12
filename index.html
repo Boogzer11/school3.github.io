@@ -1,124 +1,68 @@
-<!-- Sidebar -->
-<div class="sidebar">
-    <div class="sidebar-header">Sidebar</div>
-    <button onclick="redirectToPage('index.html')">Home</button>
-    <button onclick="redirectToPage('page2.html')">Page 2</button>
-    <button onclick="redirectToPage('page3.html')">Page 3</button>
-    <button onclick="redirectToPage('page4.html')">Page 4</button>
-</div>
+<!DOCTYPE html>
+<html lang="en">
 
-<!-- Content with Circular Image and Clickable Divs -->
-<div class="content">
-    <div class="circular-image"></div>
-    <div class="clickable-board">
-        <a href="https://sz-birkenweg.de/iserv/" class="clickable-div" style="background-image: url('https://kommdigitale.de/wp-content/uploads/sites/31/2022/03/KommDigitale2022_Unternehmensbild_1500x1500px-1024x1024.png');"></a>
-        <a href="https://anton.app/de/" class="clickable-div" style="background-image: url('data:image/png;base64,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');"></a>
-        <a href="https://www.dsbmobile.de/" class="clickable-div" style="background-image: url('https://play-lh.googleusercontent.com/fWFWWKZRFqet1Hhlyb2nz09t-7y8jehZOIo_o28JYPrJ3490JZyyOgWTjPsVpBv1oto=w240-h480-rw');"></a>
-    </div>
-</div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
 
-<style>
-    /* Sidebar styles (unchanged) */
-    .sidebar {
-        width: 80px;
-        height: 220px;
-        background-color: #551a8b;
-        position: fixed;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding-top: 20px;
-        box-sizing: border-box;
-        z-index: 1;
-        margin-bottom: 20px;
-        border-radius: 8px;
-    }
+    <style>
+        /* Sidebar styles */
+        .sidebar {
+            width: 80px;
+            height: 220px;
+            background-color: #551a8b;
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+            box-sizing: border-box;
+            z-index: 1;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            animation: floatUp 2s ease-in-out;
+        }
 
-    .sidebar-header {
-        color: #fff;
-        font-size: 16px;
-        margin-bottom: 10px;
-    }
+        .sidebar-header {
+            color: #fff;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
 
-    button {
-        background-color: #8a63e0;
-        color: #fff;
-        padding: 10px;
-        border: none;
-        cursor: pointer;
-        width: 100%;
-        text-align: left;
-        font-size: 14px;
-        margin-bottom: 5px;
-        transition: background-color 0.3s ease-in-out, border-radius 0.3s ease-in-out;
-        border-radius: 8px;
-    }
+        button {
+            background-color: #8a63e0;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+            font-size: 14px;
+            margin-bottom: 5px;
+            transition: background-color 0.3s ease-in-out, border-radius 0.3s ease-in-out;
+            border-radius: 8px;
+            animation: floatUp 2s ease-in-out;
+            z-index: 1;
+        }
 
-    button:hover {
-        background-color: #6348a6;
-    }
+        button:hover {
+            background-color: #6348a6;
+        }
 
-    /* Content styles */
-    body {
-        position: relative;
-        height: 100vh;
-        margin-left: 80px;
-        padding: 20px;
-        box-sizing: border-box;
-        background-image: url('https://img.freepik.com/premium-vector/purple-light-pin-poster-gradient-web-page-design-template-ambient-color-background_784842-87.jpg');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-    }
-
-
-    /* Clickable board styles */
-    .clickable-board {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 20px;
-    }
-
-    .clickable-div {
-        width: 80px;
-        height: 80px;
-        background-size: cover;
-        border-radius: 8px;
-        transition: filter 0.3s ease-in-out;
-    }
-
-    .clickable-div:hover {
-        filter: brightness(80%);
-    }
-
-    .clickable-div:nth-child(1) {
-        background-image: url('image1.jpg');
-        position: fixed;
-        top: 20;
-        left: 700;
-    }
-
-    .clickable-div:nth-child(2) {
-        background-image: url('image2.jpg');
-        position: fixed;
-        top: 20px;
-        right: 1000px;
-    }
-
-    .clickable-div:nth-child(3) {
-        background-image: url('image3.jpg');
-        position: fixed;
-        top: 20px;
-        right: 900px;
-    }
-</style>
-
-<script>
-    function redirectToPage(page) {
-        window.location.href = page;
-    }
-</script>
-   <style>
+        /* Content styles */
+        body {
+            position: relative;
+            height: 100vh;
+            margin-left: 80px;
+            padding: 20px;
+            box-sizing: border-box;
+            background-image: url('https://img.freepik.com/premium-vector/purple-light-pin-poster-gradient-web-page-design-template-ambient-color-background_784842-87.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            animation: floatUp 2s ease-in-out;
+        }
 
         /* Square div styles */
         .square-div {
@@ -131,14 +75,79 @@
             border: 2px solid #000; /* Adjust the border properties as needed */
             box-sizing: border-box;
             border-radius: 8px;
-            z-index: -1;
+            z-index: 1;
+            animation: floatUp 2s ease-in-out;
+        }
+
+        /* Button styles within Square Div */
+        .square-div button {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            width: auto; /* Adjust the width as needed */
+            text-align: center;
+            font-size: 14px;
+            margin-right: 10px; /* Adjust the spacing between buttons as needed */
+            transition: background-color 0.3s ease-in-out, border-radius 0.3s ease-in-out;
+            border-radius: 8px;
+            animation: floatUp 2s ease-in-out;
+        }
+
+        .square-div button:hover {
+            background-color: #2980b9;
+        }
+
+        @keyframes floatUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
     </style>
-    <!-- Content with Square Div -->
-   <div class="content">
-    <div class="square-div">
-        <div style="margin-bottom: 10px;">Dsbmobile Login: <span id="dsb"></span></div>
-        <div style="margin-bottom: 10px;">Username: <span id="username">268162</span></div>
-        <div>Password: <span id="password">schueler</span></div>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">Sidebar</div>
+        <button onclick="redirectToPage('index.html')">Home</button>
+        <button onclick="redirectToPage('page2.html')">Page 2</button>
+        <button onclick="redirectToPage('page3.html')">Page 3</button>
+        <button onclick="redirectToPage('page4.html')">Page 4</button>
     </div>
-</div>
+
+    <!-- Content with Square Div -->
+    <div class="content">
+        <div class="square-div">
+            <div style="margin-bottom: 10px;">Dsbmobile Login: <span id="dsb"></span></div>
+            <div style="margin-bottom: 10px;">Username: <span id="username">268162</span></div>
+            <div>Password: <span id="password">schueler</span></div>
+            <div class="clickable-board">
+                <button onclick="redirectTo('https://sz-birkenweg.de/iserv');">Iserv</button>
+                <button onclick="redirectTo('https://anton.app/de');">Anton</button>
+                <button onclick="redirectTo('https://www.dsbmobile.de/');">Dsbmobile</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function redirectToPage(page) {
+            window.location.href = page;
+        }
+
+        function redirectTo(url) {
+            window.location.href = url;
+        }
+    </script>
+
+</body>
+
+</html>
