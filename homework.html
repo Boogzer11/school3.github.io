@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homework Lister</title>
+  <style>
+    /* Sidebar styles */
+    .sidebar {
+      width: 80px;
+      height: 220px;
+      background-color: #551a8b;
+      position: fixed;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 20px;
+      box-sizing: border-box;
+      z-index: 1;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      animation: floatUp 2s ease-in-out;
+      left: 5px;
+    }
+
+    .sidebar-header {
+      color: #fff;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .sidebar-button {
+      background-color: #8a63e0;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      text-align: left;
+      font-size: 14px;
+      margin-bottom: 5px;
+      transition: background-color 0.3s ease-in-out, border-radius 0.3s ease-in-out;
+      border-radius: 8px;
+      z-index: 1;
+    }
+
+    .sidebar-button:hover {
+      background-color: #6348a6;
+    }
+
+    /* Homework-related styles */
+    .homework-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-left: 100px; /* Adjust the margin as needed */
+      animation: floatUp 2s ease-in-out;
+    }
+
+    .homeworkItem {
+      background-color: #8a63e0;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      position: relative;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+      right: 100px;
+    }
+
+    .homeworkItem:hover {
+      background-color: #6348a6;
+    }
+
+    .deleteButton {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      background-color: #ff6b6b;
+      color: #fff;
+      border: none;
+      padding: 5px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+    }
+
+    .homeworkItem:hover .deleteButton {
+      display: block;
+    }
+
+    /* Additional styles */
+    body {
+      font-family: Arial, sans-serif;
+      position: relative;
+      height: 100vh;
+      margin-left: 80px;
+      padding: 20px;
+      box-sizing: border-box;
+      background-image: url('https://img.freepik.com/premium-vector/purple-light-pin-poster-gradient-web-page-design-template-ambient-color-background_784842-87.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      animation: floatUp 2s ease-in-out; /* Float-up animation */
+    }
+
+    h1 {
+      color: #551a8b;
+    }
+
+    input {
+      padding: 5px;
+      margin-right: 5px;
+    }
+
+    .addHomeworkButton {
+      background-color: #551a8b;
+      color: #fff;
+      padding: 5px;
+      border: none;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    .addHomeworkButton:hover {
+      background-color: #42206f;
+    }
+
+    /* Float-up animation keyframes */
+    @keyframes floatUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-header">Sidebar</div>
+    <button class="sidebar-button" onclick="redirectToPage('index.html')">Home</button>
+    <button class="sidebar-button" onclick="redirectToPage('page2.html')">Page 2</button>
+    <button class="sidebar-button" onclick="redirectToPage('page3.html')">Page 3</button>
+    <button class="sidebar-button" onclick="redirectToPage('page4.html')">Page 4</button>
+  </div>
+
+  <h1>Homework Lister</h1>
+  
+  <!-- Input fields for homework details -->
+  <input type="text" id="homeworkInput" placeholder="Enter homework">
+  <button class="addHomeworkButton" onclick="addHomework()">Add Homework</button>
+
+  <!-- Display homework items -->
+  <div class="homework-container" id="homeworkList"></div>
+
+  <script>
+    // JavaScript logic for adding and removing homework
+    function addHomework() {
+      // Capture user input
+      const homeworkText = document.getElementById('homeworkInput').value;
+
+      // Add homework item to the list
+      const homeworkList = document.getElementById('homeworkList');
+      const newHomeworkItem = document.createElement('div');
+      newHomeworkItem.textContent = homeworkText;
+      newHomeworkItem.className = 'homeworkItem';
+
+      // Adding a delete button
+      const deleteButton = document.createElement('button');
+      deleteButton.textContent = 'Delete';
+      deleteButton.className = 'deleteButton';
+      deleteButton.onclick = () => removeHomework(newHomeworkItem);
+
+      newHomeworkItem.appendChild(deleteButton);
+      homeworkList.appendChild(newHomeworkItem);
+
+      // Save the updated list to local storage
+      const storedHomework = JSON.parse(localStorage.getItem('homework')) || [];
+      storedHomework.push(homeworkText);
+      localStorage.setItem('homework', JSON.stringify(storedHomework));
+
+      // Clear the input field
+      document.getElementById('homeworkInput').value = '';
+    }
+
+    // Function to remove a specific homework item
+    function removeHomework(homeworkItem) {
+      const storedHomework = JSON.parse(localStorage.getItem('homework')) || [];
+      const index = Array.from(homeworkItem.parentNode.children).indexOf(homeworkItem);
+      storedHomework.splice(index, 1);
+      localStorage.setItem('homework', JSON.stringify(storedHomework));
+      loadHomework();
+    }
+
+    // Function to load stored homework items on page load
+    function loadHomework() {
+      const storedHomework = JSON.parse(localStorage.getItem('homework')) || [];
+      const homeworkList = document.getElementById('homeworkList');
+      homeworkList.innerHTML = '';
+
+      storedHomework.forEach((item) => {
+        const homeworkItem = document.createElement('div');
+        homeworkItem.textContent = item;
+        homeworkItem.className = 'homeworkItem';
+
+        // Adding a delete button
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.className = 'deleteButton';
+        deleteButton.onclick = () => removeHomework(homeworkItem);
+
+        homeworkItem.appendChild(deleteButton);
+        homeworkList.appendChild(homeworkItem);
+      });
+    }
+
+    // Load stored homework items on page load
+    loadHomework();
+  </script>
+</body>
+</html>
