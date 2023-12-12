@@ -1,27 +1,57 @@
 <!-- sidebar.html -->
 
 <div class="sidebar">
-    <div class="sidebar-text">Sidebar</div>
+    <div class="sidebar-header">Sidebar</div>
+    <button onclick="redirectToPage('page1.html')">Page 1</button>
+    <button onclick="redirectToPage('page2.html')">Page 2</button>
+    <button onclick="redirectToPage('page3.html')">Page 3</button>
+    <button onclick="redirectToPage('page4.html')">Page 4</button>
 </div>
 
 <style>
     .sidebar {
-        width: 200px;
-        height: 100%;
-        background-color: #8a63e0;
-        border-right: 2px solid #fff;
+        width: 80px;
+        height: 220px;
+        background-color: #551a8b;
         position: fixed;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-between;
         padding-top: 20px;
         box-sizing: border-box;
         z-index: 1;
+        /* Adjust the margin-bottom to provide space for the buttons */
+        margin-bottom: 20px;
+        border-radius: 8px; /* Adjust the border-radius for the desired roundness */
     }
 
-    .sidebar-text {
+    .sidebar-header {
         color: #fff;
-        font-size: 20px;
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    button {
+        background-color: #8a63e0;
+        color: #fff;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        text-align: left;
+        font-size: 14px;
+        margin-bottom: 5px;
+        transition: background-color 0.3s ease-in-out, border-radius 0.3s ease-in-out;
+        border-radius: 8px; /* Adjust the border-radius for the desired roundness */
+    }
+
+    button:hover {
+        background-color: #6348a6;
     }
 </style>
+
+<script>
+    function redirectToPage(page) {
+        window.location.href = page;
+    }
+</script>
